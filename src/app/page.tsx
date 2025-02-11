@@ -5,6 +5,11 @@ import ServicesSection from './components/home/service/services'
 import ExprienceSection from './components/home/exprience/Exprience'
 import EducationTimeline from "./components/home/education/educationSection";
 import Navbar from "./components/home/navbar/Navbar";
+import Projects from "./components/home/project/ProjectSection";
+import ContactSection from './components/home/contact/contactForm'
+import FooterSection from './components/footer/Footer'
+import BlogSection from './components/home/blogs/blogSection';
+import GallerySection from './components/home/gallery/gallerySection';
 export default function Home() {
   return (
     
@@ -16,6 +21,12 @@ export default function Home() {
       <ServicesSection/>
       <ExprienceSection/> 
       <EducationTimeline/>
+      <Projects/>
+      <BlogSection/>
+      <GallerySection/>
+      <ContactSection/>
+      <FooterSection />
+
      </main>
   );
 }

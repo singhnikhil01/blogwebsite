@@ -95,7 +95,7 @@ export default function Hero() {
                 </MotionDiv>
 
                 {/* Dynamic Border */}
-                <MotionDiv animate={{ rotate: 360, scale: [1, 1.05, 1] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute inset-0 rounded-full border-2 border-transparent border-t-blue-400 border-r-purple-400" />
+                <MotionDiv animate={{ rotate: 360, scale: [1, 1.05, 1] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} className="absolute inset-0 rounded-full border-2 border-transparent border-t-blue-800 border-r-orange-400" />
               </div>
             </MotionDiv>
           )}
