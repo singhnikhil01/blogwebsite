@@ -2,45 +2,10 @@
 
 import { motion, useInView } from "framer-motion";
 import {  useRef } from "react";
-import { FaCheckCircle, FaUniversity, FaSchool} from "react-icons/fa";
+import { FaCheckCircle} from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
+import { educationData } from "@/app/constants/education";
 
-const educationData = [
-
-    {
-        year: "2019 - 2023",
-        title: "Bachelor of Technology (CSE)",
-        institution: "Amrita Vishwa Vidyapeetham, Kerala",
-        icon: <FaUniversity className="w-6 h-6 text-orange-500" />,
-        highlights: [
-            "CGPA: 8.2/10",
-            "Specialization in AI & Machine Learning",
-
-        ]
-    },
-    {
-        year: "2017 - 2019",
-        title: "Higher Secondary Education",
-        institution: "Delhi Public School, New Delhi",
-        icon: <FaSchool className="w-6 h-6 text-orange-500" />,
-        highlights: [
-            "Scored 95% in CBSE Board Exams",
-            "Head of Science Club",
-        ]
-    },
-   
-    {
-        year: "2017 - 2019",
-        title: "Higher Secondary Education",
-        institution: "Delhi Public School, New Delhi",
-        icon: <FaSchool className="w-6 h-6 text-orange-500" />,
-        highlights: [
-            "Scored 95% in CBSE Board Exams",
-            "Head of Science Club",
-        ]
-    },
-  
-];
 
 const itemVariants = {
     hidden: { opacity: 0, y: 50 },

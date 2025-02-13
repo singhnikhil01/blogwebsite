@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import ProjectCard from '../../card/projectcard';
 import { FiGithub, FiExternalLink, FiX,  } from 'react-icons/fi';
+import { projectsData as projects } from '@/app/constants/education';
+
 
 
 type  Project ={
@@ -35,77 +37,6 @@ const COLORS = {
 
 const ProjectShowcase = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const projects = [
-    {
-      id: 1,
-      title: 'AI-Powered Content Moderator',
-      type: 'ML Engineering',
-      image: '/projects/ai-moderation.jpg',
-      highlights: [
-        'Real-time image analysis pipeline',
-        'Custom CNN architecture',
-        'Scalable Kubernetes deployment'
-      ],
-      github: '#',
-      demo: '#',
-      details: {
-        overview: 'Developed a content moderation system handling 10k+ requests/minute...',
-        challenges: ['Real-time processing demands', 'Model interpretability needs'],
-        architecture: 'TensorFlow → FastAPI → Redis → React',
-        stack: ['Python', 'PyTorch', 'Docker', 'AWS'],
-        images: [
-          '/projects/moderation-1.jpg',
-          '/projects/moderation-2.jpg'
-        ]
-      }
-    },
-    {
-      id: 2,
-      title: 'Serverless E-Commerce Platform',
-      type: 'Full Stack Development',
-      image: '/projects/ecommerce.jpg',
-      highlights: [
-        'Zero-downtime deployments',
-        'JWT-based auth system',
-        'Payment gateway integration'
-      ],
-      github: '#',
-      demo: '#',
-      details: {
-        overview: 'Built cloud-native platform handling $1M+ monthly transactions...',
-        challenges: ['State management in serverless', 'Cold start optimization'],
-        architecture: 'React → Lambda → DynamoDB → Stripe',
-        stack: ['TypeScript', 'Node.js', 'Terraform', 'Redis'],
-        images: [
-          '/projects/ecommerce-1.jpg',
-          '/projects/ecommerce-2.jpg'
-        ]
-      }
-    },
-    {
-      id: 3,
-      title: 'Serverless E-Commerce Platform',
-      type: 'Full Stack Development',
-      image: '/projects/ecommerce.jpg',
-      highlights: [
-        'Zero-downtime deployments',
-        'JWT-based auth system',
-        'Payment gateway integration'
-      ],
-      github: '#',
-      demo: '#',
-      details: {
-        overview: 'Built cloud-native platform handling $1M+ monthly transactions...',
-        challenges: ['State management in serverless', 'Cold start optimization'],
-        architecture: 'React → Lambda → DynamoDB → Stripe',
-        stack: ['TypeScript', 'Node.js', 'Terraform', 'Redis'],
-        images: [
-          '/projects/ecommerce-1.jpg',
-          '/projects/ecommerce-2.jpg'
-        ]
-      }
-    }
-  ];
 
   return (
     <section 

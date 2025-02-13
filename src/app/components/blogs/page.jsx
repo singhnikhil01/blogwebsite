@@ -84,7 +84,7 @@ const Page = () => {
   });
 
   return (
-    <div className="py-20 text-white overflow-x-auto">
+    <div className="py-20  text-white overflow-x-auto">
       <div className="max-w-[90%] mx-auto ">
       <header className="py-12 px-6  md:px-16 text-center">
         <h1 className="text-4xl md:text-6xl font-bold bg-clip-text  text-orange-600">
@@ -95,9 +95,7 @@ const Page = () => {
         </p>
       </header>
 
-      {/* Main Content */}
       <div className="mx-auto w-[90%]">
-        {/* Search Bar and Keywords */}
         <div className="mb-8">
           <div className="relative mb-4">
             <input
@@ -109,7 +107,6 @@ const Page = () => {
             />
             <FaSearch className="absolute right-6 top-3.5 text-gray-400" />
           </div>
-          {/* Keywords and Mobile Buttons */}
           <div className="flex flex-wrap gap-2 items-center">
             {keywords.map((keyword) => (
               <button

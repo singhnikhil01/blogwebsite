@@ -1,6 +1,6 @@
 import {
     Home,
-    Book,
+    // Book,
     Images,
     FolderKanban,
     FileText,
@@ -19,11 +19,11 @@ export const navItems = [
       href: "projects",
       icon: <FolderKanban size={22} className="text-orange-500" />,
     },
-    {
-      name: "Blogs",
-      href: "/blogs",
-      icon: <Book size={22} className="text-yellow-500" />,
-    },
+    // {
+    //   name: "Blogs",
+    //   href: "/blogs",
+    //   icon: <Book size={22} className="text-yellow-500" />,
+    // },
     {
       name: "Gallery",
       href: "/gallery",

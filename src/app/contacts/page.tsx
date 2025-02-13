@@ -2,16 +2,12 @@
 import { motion } from 'framer-motion';
 import ContactCard from "../components/card/contactCard";
 import { 
-    FaLinkedin, 
-    FaGithub, 
-    FaTwitter, 
-    FaDiscord,
-    FaSlack,
-    FaCalendarAlt,
     FaPaperPlane,
-    FaWhatsapp
+    FaWhatsapp,
+    FaSlack,  
+    
   } from "react-icons/fa";
-  import { SiGmail } from "react-icons/si";
+import { socialLinks } from '../constants/contact';
 
 const ContactPage = () => {
   const fadeIn = {
@@ -19,58 +15,15 @@ const ContactPage = () => {
     visible: { opacity: 1, transition: { duration: 0.8 } },
   };
 
+  const whatsapp =""
+  const slackworkspace =""
+
   const stagger = {
     visible: { transition: { staggerChildren: 0.2 } },
   };
 
-
-  const socialLinks = [
-    {
-      icon: <FaLinkedin className="w-8 h-8 text-[#0A66C2]" />,
-      title: "LinkedIn",
-      text: "Let's connect professionally",
-      link: "https://linkedin.com/in/yourprofile",
-      color: "hover:bg-blue-50 dark:hover:bg-blue-900/20"
-    },
-    {
-      icon: <FaGithub className="w-8 h-8 text-gray-800 dark:text-gray-200" />,
-      title: "GitHub",
-      text: "Explore my projects & contributions",
-      link: "https://github.com/yourprofile",
-      color: "hover:bg-gray-100 dark:hover:bg-gray-700"
-    },
-    {
-      icon: <FaTwitter className="w-8 h-8 text-[#1DA1F2]" />,
-      title: "Twitter",
-      text: "Daily insights & tech updates",
-      link: "https://twitter.com/yourhandle",
-      color: "hover:bg-blue-50 dark:hover:bg-blue-900/20"
-    },
-    {
-      icon: <FaDiscord className="w-8 h-8 text-[#5865F2]" />,
-      title: "Discord",
-      text: "Join my developer community",
-      link: "https://discord.gg/yourinvite",
-      color: "hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
-    },
-    {
-      icon: <SiGmail className="w-8 h-8 text-[#EA4335]" />,
-      title: "Gmail",
-      text: "Send me an email directly",
-      link: "mailto:your.email@example.com",
-      color: "hover:bg-red-50 dark:hover:bg-red-900/20"
-    },
-    {
-      icon: <FaCalendarAlt className="w-8 h-8 text-[#4285F4]" />,
-      title: "Book a Call",
-      text: "Schedule a meeting",
-      link: "https://calendly.com/yourprofile",
-      color: "hover:bg-blue-50 dark:hover:bg-blue-900/20"
-    }
-  ];
   return (
-    <div className="max-w-[]  py-32 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section */}
+    <div className="w-full  py-32 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <motion.div
         initial="hidden"
         animate="visible"
@@ -81,14 +34,14 @@ const ContactPage = () => {
           variants={fadeIn}
           className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-6"
         >
-          Let's Build Something Amazing
+          Let&apos;s Build Something Amazing
         </motion.h1>
         <motion.p
           variants={fadeIn}
           className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8"
         >
           Whether you have a project in mind, need consultation, or just want to connect - 
-          I'm here to help turn your ideas into reality.
+          I&apos;m here to help turn your ideas into reality.
         </motion.p>
         
         <motion.div variants={fadeIn} className="flex justify-center space-x-4">
@@ -151,7 +104,7 @@ const ContactPage = () => {
                 Ready to Start Your Project?
               </h2>
               <p className="text-gray-600 dark:text-gray-300 mb-8">
-                Let's discuss how we can bring your vision to life with innovative solutions.
+                Let&apos;s discuss how we can bring your vision to life with innovative solutions.
               </p>
               <a
                 href="#contact-form"
@@ -216,7 +169,7 @@ const ContactPage = () => {
                 </div>
               </div>
               <a
-                href="https://wa.me/yournumber"
+                href={whatsapp}
                 className="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
               >
                 <FaPaperPlane className="mr-2" />
@@ -241,7 +194,7 @@ const ContactPage = () => {
                 </div>
               </div>
               <a
-                href="https://join.slack.com/yourworkspace"
+                href={slackworkspace}
                 className="inline-flex items-center px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
               >
                 <FaPaperPlane className="mr-2" />

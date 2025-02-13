@@ -1,14 +1,17 @@
-'use client';
+"use client";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
+import { sendEmail } from "@/app/actions/email/sendEmail";
 import "leaflet/dist/leaflet.css";
+import { userEmail, Phone,center,location } from "@/app/constants/contact";
 
 // Fix for default marker icons in Next.js
 const DefaultIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
+  iconRetinaUrl:
+    "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png",
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
@@ -33,7 +36,9 @@ const ContactCard = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitStatus, setSubmitStatus] = useState<string>("");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -44,15 +49,13 @@ const ContactCard = () => {
     setSubmitStatus("");
 
     try {
-      const response = await fetch("https://formspree.io/f/your-form-id", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      const response = await sendEmail({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
       });
 
-      if (response.ok) {
+      if (response && response.ok) {
         setSubmitStatus("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
       } else {
@@ -71,7 +74,10 @@ const ContactCard = () => {
       <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Name
             </label>
             <input
@@ -85,7 +91,10 @@ const ContactCard = () => {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Email
             </label>
             <input
@@ -99,7 +108,10 @@ const ContactCard = () => {
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Message
             </label>
             <textarea
@@ -122,7 +134,9 @@ const ContactCard = () => {
             </button>
           </div>
           {submitStatus && (
-            <p className="text-center text-sm text-gray-700 dark:text-gray-300">{submitStatus}</p>
+            <p className="text-center text-sm text-gray-700 dark:text-gray-300">
+              {submitStatus}
+            </p>
           )}
         </form>
       </div>
@@ -131,29 +145,37 @@ const ContactCard = () => {
       <div className="space-y-8">
         {/* Contact Information */}
         <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Contact Information</h3>
+          <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+            Contact Information
+          </h3>
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
               <FaEnvelope className="w-6 h-6 text-orange-500" />
-              <p className="text-gray-700 dark:text-gray-300">your.email@example.com</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                {userEmail}
+              </p>
             </div>
             <div className="flex items-center space-x-4">
               <FaPhone className="w-6 h-6 text-blue-500" />
-              <p className="text-gray-700 dark:text-gray-300">+1 234 567 890</p>
+              <p className="text-gray-700 dark:text-gray-300">{Phone}</p>
             </div>
             <div className="flex items-center space-x-4">
               <FaMapMarkerAlt className="w-6 h-6 text-purple-500" />
-              <p className="text-gray-700 dark:text-gray-300">123 Main Street, New York, USA</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                {location}
+              </p>
             </div>
           </div>
         </div>
 
         {/* Map Component */}
         <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">My Location</h3>
+          <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+            My Location
+          </h3>
           <div className="h-64 md:h-80 rounded-md overflow-hidden">
             <MapContainer
-              center={[9.0910878, 76.4902126]}
+              center={center}
               zoom={13}
               scrollWheelZoom={false}
               className="h-full w-full z-0"
@@ -162,7 +184,7 @@ const ContactCard = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
-              <Marker position={[9.0910878, 76.4902126]}>
+              <Marker position={center}>
                 <Popup>I&apos;m here! Let&apos;s meet.</Popup>
               </Marker>
             </MapContainer>

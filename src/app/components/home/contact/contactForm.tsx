@@ -5,7 +5,7 @@ return (
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-blue-700">
-            Contact Me
+          Let&apos;s Connect and Create Something Amazing!&quot;
           </h2>
           <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300">
             Let&apos;s connect! Feel free to reach out for collaborations or just a friendly chat.
