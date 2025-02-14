@@ -202,7 +202,7 @@ const AboutPage = () => {
       <section className="py-24 px-6 text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold mb-6">
-            Let's Build Something
+            Let&aposs Build Something
             <span className="bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
               {" "}
               Meaningful
