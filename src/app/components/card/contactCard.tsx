@@ -1,11 +1,11 @@
 "use client";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import L from "leaflet";
 import { sendEmail } from "@/app/actions/email/sendEmail";
 import "leaflet/dist/leaflet.css";
-import { userEmail, Phone,center,location } from "@/app/constants/contact";
+import { userEmail, Phone, center, location } from "@/app/constants/contact";
 
 // Fix for default marker icons in Next.js
 const DefaultIcon = L.icon({
@@ -35,6 +35,16 @@ const ContactCard = () => {
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitStatus, setSubmitStatus] = useState<string>("");
+
+  useEffect(() => {
+    if (submitStatus === "Message sent successfully!") {
+      const timer = setTimeout(() => {
+        setSubmitStatus("");
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -72,6 +82,7 @@ const ContactCard = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Contact Form */}
       <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg">
+        
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label
@@ -134,7 +145,10 @@ const ContactCard = () => {
             </button>
           </div>
           {submitStatus && (
-            <p className="text-center text-sm text-gray-700 dark:text-gray-300">
+            <p
+              className={`"text-center text-sm py-2 rounded-sm font-bold 
+            ${submitStatus.includes('success') ?  'bg-green-400 text-center text-gray-950':'bg-red-500 text-center text-white'}"`}
+            >
               {submitStatus}
             </p>
           )}
@@ -151,9 +165,7 @@ const ContactCard = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
               <FaEnvelope className="w-6 h-6 text-orange-500" />
-              <p className="text-gray-700 dark:text-gray-300">
-                {userEmail}
-              </p>
+              <p className="text-gray-700 dark:text-gray-300">{userEmail}</p>
             </div>
             <div className="flex items-center space-x-4">
               <FaPhone className="w-6 h-6 text-blue-500" />
@@ -161,9 +173,7 @@ const ContactCard = () => {
             </div>
             <div className="flex items-center space-x-4">
               <FaMapMarkerAlt className="w-6 h-6 text-purple-500" />
-              <p className="text-gray-700 dark:text-gray-300">
-                {location}
-              </p>
+              <p className="text-gray-700 dark:text-gray-300">{location}</p>
             </div>
           </div>
         </div>

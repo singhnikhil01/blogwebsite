@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import Image from "next/image";
 import {
   FiZoomIn,
   FiChevronLeft,
@@ -15,9 +16,8 @@ interface Photo {
   category: string;
   caption: string;
   description: string;
-  camera: string;
-  lens: string;
-  settings: string;
+  location: string;
+  Date: string;
 }
 
 interface Props {
@@ -28,6 +28,16 @@ const GalleryCard: React.FC<Props> = ({ photos }) => {
   const [selectedImg, setSelectedImg] = useState<Photo | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [showDescription, setShowDescription] = useState<boolean>(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowDescription(window.innerWidth >= 640);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const openLightbox = (img: Photo, index: number) => {
     setSelectedImg(img);
@@ -58,18 +68,16 @@ const GalleryCard: React.FC<Props> = ({ photos }) => {
             className="mb-8 relative group cursor-pointer break-inside-avoid"
             onClick={() => openLightbox(img, index)}
           >
-            {/* Image Container */}
             <div className="relative overflow-hidden rounded-2xl shadow-xl">
-              <img
+              <Image
                 src={img.src}
                 alt={img.caption}
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
 
-              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-              {/* Caption */}
               <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                 <div className="flex justify-between items-center text-white">
                   <div>
@@ -112,16 +120,12 @@ const GalleryCard: React.FC<Props> = ({ photos }) => {
             </h3>
             <div className="space-y-4 text-gray-300">
               <div>
-                <p className="text-sm text-orange-400">Camera</p>
-                <p>{selectedImg.camera}</p>
+                <p className="text-sm text-orange-400">Location</p>
+                <p>{selectedImg.location}</p>
               </div>
               <div>
-                <p className="text-sm text-orange-400">Lens</p>
-                <p>{selectedImg.lens}</p>
-              </div>
-              <div>
-                <p className="text-sm text-orange-400">Settings</p>
-                <p>{selectedImg.settings}</p>
+                <p className="text-sm text-orange-400">Date</p>
+                <p>{selectedImg.Date}</p>
               </div>
               <div>
                 <p className="text-sm text-orange-400">Description</p>
@@ -144,9 +148,11 @@ const GalleryCard: React.FC<Props> = ({ photos }) => {
             animate={{ scale: 1 }}
             className="relative max-w-[90vw] max-h-[90vh]"
           >
-            <img
+            <Image
               src={selectedImg.src}
               alt={selectedImg.caption}
+              width={800}
+              height={400}
               className="md:w-[80%] h-[40%] object-contain rounded-xl shadow-2xl"
             />
 
@@ -154,9 +160,9 @@ const GalleryCard: React.FC<Props> = ({ photos }) => {
             <motion.div
               initial={{ y: 20 }}
               animate={{ y: 0 }}
-              className="absolute bottom-6 z-50 left-6 text-white bg-black/50 p-4 rounded-xl backdrop-blur-sm"
+              className="absolute bottom-6 z-50 left-6 text-white bg-black/50 p-4 rounded-xl backdrop-blur-sm hidden sm:block"
             >
-              <h3 className="text-xl font-semibold">{selectedImg.caption}</h3>
+              <h3 className="text-xl sm:text-sm  font-semibold">{selectedImg.caption}</h3>
               <p className="text-gray-300">{selectedImg.category}</p>
             </motion.div>
           </motion.div>

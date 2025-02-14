@@ -74,7 +74,7 @@ const ProjectCard: React.FC<Props> = ({ projects, setSelectedProject }) => {
                 className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all bg-blue-600 text-white"
               >
                 <FiLayout className="text-lg" />
-                View Demo
+              Demo
               </button>
               {project.github && (
                 <a

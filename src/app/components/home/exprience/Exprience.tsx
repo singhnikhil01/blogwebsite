@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { FiBriefcase, FiClock, FiCode, FiTrendingUp } from "react-icons/fi";
-import { FaReact, FaNodeJs, FaAws, FaDocker, FaJsSquare, FaGitAlt } from 'react-icons/fa'; 
+import { ChevronRight } from 'lucide-react';
 import { experienceData } from "@/app/constants/expritence";
 
 const  ExperienceSection=()=> {
@@ -31,14 +31,6 @@ const  ExperienceSection=()=> {
     }
   };
 
-  const techIconMap = {
-    'React': FaReact,
-    'Node.js': FaNodeJs,
-    'AWS': FaAws,
-    'Docker': FaDocker,
-    'Jest': FaJsSquare,
-    'Git': FaGitAlt,
-  };
 
   return (
     <section className="py-20 px-6 md:px-16 bg-gray-100 bg-gradient-to-br from-gray-900 to-black text-white">
@@ -111,15 +103,14 @@ const  ExperienceSection=()=> {
                     Technologies Engaged
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
-                  {(['React', 'Node.js', 'AWS', 'Docker', 'Jest', 'Git'] as const).map((tech) => {
-                      const TechIcon = techIconMap[tech];
+                  {(experienceData.timeline[0].technologies).map((tech) => {
                       return (
                         <motion.div
                           key={tech}
                           className="flex items-center gap-2 p-2 rounded-md bg-gray-50 dark:bg-gray-700 text-sm"
                           whileHover={{ scale: 1.03 }}
                         >
-                          <TechIcon className="h-4 w-4 text-orange-500" />
+                          {<ChevronRight className="h-4 w-4 text-orange-500" /> }
                           <span>{tech}</span>
                         </motion.div>
                       );

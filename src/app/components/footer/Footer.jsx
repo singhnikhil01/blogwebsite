@@ -1,5 +1,14 @@
 "use client";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+} from "react-icons/fa";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const FooterSection = () => {
@@ -36,10 +45,7 @@ const FooterSection = () => {
   return (
     <footer className="bg-gradient-to-br from-gray-900 to-black text-white py-12 px-6 md:px-16">
       <div className="mx-auto max-w-6xl">
-        {/* Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-       
-          {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-blue-700">
               Quick Links
@@ -68,16 +74,26 @@ const FooterSection = () => {
               Gallery
             </h3>
             <div className="grid grid-cols-3 gap-2">
-              {[1, 2].map((item) => (
+              {[
+                
+                "https://ajuo8pgnwp.ufs.sh/f/FHfjqH6Z9VrPWTbabsEqWzNimubUwCFRt9kg23QrYSey6Goc",
+                "https://ajuo8pgnwp.ufs.sh/f/FHfjqH6Z9VrPUYPwlo29tEj8GdBrzuSV1InsKa4qgYUpN0Lx",
+              ].map((src, index) => (
                 <div
-                  key={item}
-                  className="w-full h-20 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
-                ></div>
+                  key={index}
+                  className="w-full h-20"
+                >
+                  <Image
+                    src={src}
+                    alt={`Image ${index + 1}`}
+                    width={320}
+                    height={80}
+                    className="object-cover"
+                  />
+                </div>
               ))}
             </div>
           </div>
-
-          {/* Contact Info */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-blue-700">
               Contact Info
@@ -85,7 +101,10 @@ const FooterSection = () => {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <FaPhone className="w-5 h-5 text-orange-500" />
-                <a href="tel:+917481030330" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <a
+                  href="tel:+917481030330"
+                  className="text-gray-400 hover:text-blue-500 transition-colors"
+                >
                   +91 7481030330
                 </a>
               </li>
@@ -105,8 +124,6 @@ const FooterSection = () => {
             </ul>
           </div>
         </div>
-
-        {/* Divider */}
         <div className="border-t border-gray-800 my-8"></div>
         <div className="flex flex-col justify-between items-center space-y-4 md:space-y-0">
           <div className="flex space-x-4">

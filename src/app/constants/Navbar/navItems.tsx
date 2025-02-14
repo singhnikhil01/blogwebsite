@@ -42,7 +42,7 @@ export const navItems = [
     },
     {
       name: "Resume",
-      href: "#resume",
+      href: "https://ajuo8pgnwp.ufs.sh/f/FHfjqH6Z9VrPwpPdZurRtVSk0pHzEmaKBxbl9hC2fiLr4cdA",
       icon: <FileText size={22} className="text-purple-500" />,
     },
    
