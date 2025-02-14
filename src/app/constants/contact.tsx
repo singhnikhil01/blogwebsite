@@ -10,7 +10,7 @@ import { SiGmail } from "react-icons/si";
 
 export const userEmail = 'singhnikhil03@outlook.com'
 export const location = 'Amritapuri, Kerala , India'
-export const center = [9.0910878, 76.4902126]
+export const center: [number, number] = [9.0910878, 76.4902126];
 export const Phone =  +917481030330
 
 export  const socialLinks = [

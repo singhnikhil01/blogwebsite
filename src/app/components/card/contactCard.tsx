@@ -71,6 +71,7 @@ const ContactCard = () => {
       } else {
         setSubmitStatus("Failed to send message. Please try again.");
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setSubmitStatus("An error occurred. Please try again.");
     } finally {
@@ -82,7 +83,6 @@ const ContactCard = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Contact Form */}
       <div className="bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg">
-        
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label
@@ -147,7 +147,11 @@ const ContactCard = () => {
           {submitStatus && (
             <p
               className={`"text-center text-sm py-2 rounded-sm font-bold 
-            ${submitStatus.includes('success') ?  'bg-green-400 text-center text-gray-950':'bg-red-500 text-center text-white'}"`}
+            ${
+              submitStatus.includes("success")
+                ? "bg-green-400 text-center text-gray-950"
+                : "bg-red-500 text-center text-white"
+            }"`}
             >
               {submitStatus}
             </p>
@@ -184,20 +188,20 @@ const ContactCard = () => {
             My Location
           </h3>
           <div className="h-64 md:h-80 rounded-md overflow-hidden">
-            <MapContainer
-              center={center}
-              zoom={13}
-              scrollWheelZoom={false}
-              className="h-full w-full z-0"
-            >
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
-              <Marker position={center}>
-                <Popup>I&apos;m here! Let&apos;s meet.</Popup>
-              </Marker>
-            </MapContainer>
+              <MapContainer
+                center={center}
+                zoom={13}
+                scrollWheelZoom={false}
+                className="h-full w-full z-0"
+              >
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+                <Marker position={center}>
+                  <Popup>I&apos;m here! Let&apos;s meet.</Popup>
+                </Marker>
+              </MapContainer>
           </div>
         </div>
       </div>
