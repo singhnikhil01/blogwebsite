@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import {
   FiZoomIn,
@@ -29,15 +29,15 @@ const GalleryCard: React.FC<Props> = ({ photos }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [showDescription, setShowDescription] = useState<boolean>(true);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setShowDescription(window.innerWidth >= 640);
-    };
+  // useEffect(() => {
+  //   // const handleResize = () => {
+  //   //   setShowDescription(window.innerWidth >= 640);
+  //   // };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  //   handleResize();
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
   const openLightbox = (img: Photo, index: number) => {
     setSelectedImg(img);
